@@ -17,13 +17,13 @@ public class Calculator {
         boolean isRoman;
 
 
-        if (!expression.contains("-") || !expression.contains("+") || !expression.contains("*") || !expression.contains("/"))
-        {throw new Exception("Невозможно совершить операцию");}
+        if (!expression.contains("-") && !expression.contains("+") && !expression.contains("*") && !expression.contains("/"))
+        {throw new Exception("т.к. невозможно совершить операцию/ строка не является математической операцией");}
         String[] operands = expression.split("[+\\-*/]");
 
 
 
-        if (operands.length != 2) throw new Exception("Должно быть введено только две цифры");
+        if (operands.length != 2) throw new Exception("т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
         oper = detectOperation(expression);
         if (Roman.isRoman(operands[0]) && Roman.isRoman(operands[1])) {
             num1 = Roman.convertToArabian(operands[0]);
@@ -35,17 +35,17 @@ public class Calculator {
             num2 = Integer.parseInt(operands[1]);
             isRoman = false;
         } else {
-            throw new Exception("Цифры должны быть в одном формате");
+            throw new Exception("т.к. одновременно используются разные системы счисления");
         }
 
         if (num1 > 10 || num2 > 10) {
-            throw new Exception("Цифры не могут быть больше 10-ти");
+            throw new Exception("т.к. цифры не могут быть больше 10-ти");
 
         }
         int arabian = calc(num1, num2, oper);
         if (isRoman) {
             if (arabian <= 0) {
-                throw new Exception("Римсоке число не может быть равно или меньше нуля");
+                throw new Exception("т.к.римское число не может быть отрицательным");
 
             }
             result = Roman.convertToRoman(arabian);
